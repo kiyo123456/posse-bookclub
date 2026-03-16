@@ -1,6 +1,8 @@
 import supabase from "@/app/utils/database";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
     try {
         const { data } = await supabase.from('items').select()
