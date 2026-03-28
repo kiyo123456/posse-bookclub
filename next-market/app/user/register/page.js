@@ -8,11 +8,12 @@ const Register  = () =>{
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleSubmit= () =>{
+    const handleSubmit= async(e) =>{
+        e.preventDefault()
         try{
             // データの取得やデータの送付を行える
             // ""にはデータの送付先を記述する。
-            fetch("http://localhost:3000/api/user/register",{
+            const response = await fetch("http://localhost:3000/api/user/register",{
                 method:"POST",
                 headers:{ 
                     "Accept": "application/json", 
@@ -26,6 +27,8 @@ const Register  = () =>{
                     password:password,
                 })
             })
+            const jsonData = await response.json()
+            alert(jsonData.message)
         } catch{
             alert("ユーザー登録失敗")
         }
